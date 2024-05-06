@@ -13,11 +13,18 @@ export class GameOfLife {
     }
   }
 
-  constructor(width: number, height: number) {
+  parseEncoding(encoding: string) {
+    const _rows = encoding.split('$')
+    const rows = _rows.map((r) => r.replace('!', '').split(''))
+    this.board = rows
+  }
+
+  constructor(width: number, height: number, encoding?: string) {
     this.width = width
     this.height = height
     this.board = []
     this.initializeBoardBasedOnWidthAndHeight(width, height)
+    encoding && this.parseEncoding(encoding)
   }
 
   toString() {
