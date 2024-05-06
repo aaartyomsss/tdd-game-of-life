@@ -39,11 +39,21 @@ describe('Board can accept and read RLE without parsing x/y', () => {
     `)
   })
 
-  test('Single inpur of alive cell is read correctly', () => {
+  test('Single input of alive cell is read correctly', () => {
     const input = 'o!'
     const game = new GameOfLife(1, 1, input)
     expect(game.toString()).to.equalShape(`
       o
+    `)
+  })
+
+  test('3 by 3 exact encoding provided gives correct result', () => {
+    const input = 'bob$bbo$ooo!'
+    const game = new GameOfLife(3, 3, input)
+    expect(game.toString()).to.equalShape(`
+      bob
+      bbo
+      ooo
     `)
   })
 })
