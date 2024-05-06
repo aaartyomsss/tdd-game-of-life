@@ -56,4 +56,14 @@ describe('Board can accept and read RLE without parsing x/y', () => {
       ooo
     `)
   })
+
+  test('3 by 3 encoding provided gives correct result', () => {
+    const input = 'bob$2bo$3o!'
+    const game = new GameOfLife(3, 3, input)
+    expect(game.toString()).to.equalShape(`
+      bob
+      bbo
+      ooo
+    `)
+  })
 })
