@@ -38,4 +38,12 @@ describe('Board can accept and read RLE without parsing x/y', () => {
       b
     `)
   })
+
+  test('Single inpur of alive cell is read correctly', () => {
+    const input = 'o!'
+    const game = new GameOfLife(1, 1, input)
+    expect(game.toString()).to.equalShape(`
+      o
+    `)
+  })
 })
