@@ -1,5 +1,5 @@
 export default {
   test: {
-    setupFiles: ['test/equalShape.mjs'],
+    setupFiles: ['test/equalShape.ts'],
   },
 }
