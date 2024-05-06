@@ -15,24 +15,26 @@ export class GameOfLife {
 
   parseEncoding(encoding: string) {
     const _rows = encoding.split('$')
-    const rows = _rows.map((r) => {
-      let prevMultiplier: number | undefined = undefined
-      const elements = r.split('')
-      let parsedRow = ''
-      for (const index in elements) {
-        const element = elements[index]
-        const maybeNumber = Number(element)
-        if (Number.isNaN(maybeNumber)) {
-          parsedRow += elements[index].repeat(prevMultiplier || 1)
-          prevMultiplier = undefined
-        } else {
-          prevMultiplier = maybeNumber
-        }
-      }
-
-      return parsedRow.replace('!', '').split('')
-    })
+    const rows = _rows.map(this.parseEncodedRow)
     this.board = rows
+  }
+
+  parseEncodedRow(row: string) {
+    let prevMultiplier: number | undefined = undefined
+    const elements = row.split('')
+    let parsedRow = ''
+    for (const index in elements) {
+      const element = elements[index]
+      const maybeNumber = Number(element)
+      if (Number.isNaN(maybeNumber)) {
+        parsedRow += elements[index].repeat(prevMultiplier || 1)
+        prevMultiplier = undefined
+      } else {
+        prevMultiplier = maybeNumber
+      }
+    }
+
+    return parsedRow.replace('!', '').split('')
   }
 
   constructor(width: number, height: number, encoding?: string) {
