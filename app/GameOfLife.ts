@@ -19,6 +19,10 @@ export class GameOfLife {
     this.board = rows
   }
 
+  /**
+   * OBS HAS BEEN FREEZING THE SCREEN OF THE RECORDING FOR 42 MINUTES :+1:
+   */
+
   parseEncodedRow = (row: string) => {
     let prevMultiplier: number | undefined = undefined
     const elements = row.split('')
