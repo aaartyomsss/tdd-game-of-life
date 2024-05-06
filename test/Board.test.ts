@@ -12,8 +12,8 @@ describe('The board for the Game of Life can be defined', () => {
   test('Class has a matrix respresenting board upon instantiating', () => {
     const game = new GameOfLife(2, 2)
     vex(game.board).toStrictEqual([
-      ['.', '.'],
-      ['.', '.'],
+      ['b', 'b'],
+      ['b', 'b'],
     ])
   })
 
@@ -21,11 +21,11 @@ describe('The board for the Game of Life can be defined', () => {
     const game = new GameOfLife(5, 5)
 
     expect(game.toString()).to.equalShape(
-      `.....
-       .....
-       .....
-       .....
-       .....`
+      `bbbbb
+       bbbbb
+       bbbbb
+       bbbbb
+       bbbbb`
     )
   })
 })
