@@ -49,10 +49,12 @@ export class GameOfLife {
     currentElement: string
   ) => {
     if (encodedLength - 1 === currentIndex && currentIndex < this.width - 1) {
-      const difference =
-        currentElement === '!'
-          ? this.width - currentIndex
-          : this.width - 1 - currentIndex
+      let difference = this.width - 1 - currentIndex
+
+      if (currentElement === '!') {
+        difference += 1
+      }
+
       return 'b'.repeat(difference)
     }
     return ''
