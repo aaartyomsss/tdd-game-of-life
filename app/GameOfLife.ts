@@ -19,7 +19,7 @@ export class GameOfLife {
     this.board = rows
   }
 
-  parseEncodedRow(row: string) {
+  parseEncodedRow = (row: string) => {
     let prevMultiplier: number | undefined = undefined
     const elements = row.split('')
     let parsedRow = ''
@@ -29,6 +29,16 @@ export class GameOfLife {
       if (Number.isNaN(maybeNumber)) {
         parsedRow += elements[index].repeat(prevMultiplier || 1)
         prevMultiplier = undefined
+        if (
+          elements.length - 1 === Number(index) &&
+          Number(index) < this.width - 1
+        ) {
+          const difference =
+            element === '!'
+              ? this.width - Number(index)
+              : this.width - 1 - Number(index)
+          parsedRow += 'b'.repeat(difference)
+        }
       } else {
         prevMultiplier = maybeNumber
       }

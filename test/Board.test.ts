@@ -66,4 +66,14 @@ describe('Board can accept and read RLE without parsing x/y', () => {
       ooo
     `)
   })
+
+  test('3 by 3 encoding should automatically append dead cells to the end', () => {
+    const input = 'bo$2bo$o!'
+    const game = new GameOfLife(3, 3, input)
+    expect(game.toString()).to.equalShape(`
+      bob
+      bbo
+      obb
+    `)
+  })
 })
