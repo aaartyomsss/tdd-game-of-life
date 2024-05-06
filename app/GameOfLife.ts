@@ -29,22 +29,33 @@ export class GameOfLife {
       if (Number.isNaN(maybeNumber)) {
         parsedRow += elements[index].repeat(prevMultiplier || 1)
         prevMultiplier = undefined
-        if (
-          elements.length - 1 === Number(index) &&
-          Number(index) < this.width - 1
-        ) {
-          const difference =
-            element === '!'
-              ? this.width - Number(index)
-              : this.width - 1 - Number(index)
-          parsedRow += 'b'.repeat(difference)
-        }
+
+        parsedRow += this.appendDeadCellsToTheEndOfTheRow(
+          elements.length,
+          Number(index),
+          element
+        )
       } else {
         prevMultiplier = maybeNumber
       }
     }
 
     return parsedRow.replace('!', '').split('')
+  }
+
+  appendDeadCellsToTheEndOfTheRow = (
+    encodedLength: number,
+    currentIndex: number,
+    currentElement: string
+  ) => {
+    if (encodedLength - 1 === currentIndex && currentIndex < this.width - 1) {
+      const difference =
+        currentElement === '!'
+          ? this.width - currentIndex
+          : this.width - 1 - currentIndex
+      return 'b'.repeat(difference)
+    }
+    return ''
   }
 
   constructor(width: number, height: number, encoding?: string) {
