@@ -91,6 +91,19 @@ export class GameOfLife {
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
         const currentCell = this.board[i][j]
+        let numberOfAliveNeightbors = 0
+        // Actually doesn't matter now
+        if (
+          this.board[i - 1] &&
+          this.board[i - 1][j] &&
+          this.board[i - 1][j] === 'o'
+        ) {
+          numberOfAliveNeightbors++
+        }
+
+        if (currentCell === 'o' && numberOfAliveNeightbors < 2) {
+          this.board[i][j] = 'b'
+        }
       }
     }
   }

@@ -23,4 +23,20 @@ describe('Main game logic', () => {
       bb
     `)
   })
+
+  test('Single alive cell dies, if all other are dead', () => {
+    const input = 'bb$ob!'
+    const game = new GameOfLife(2, 2, input)
+    expect(game.toString()).to.equalShape(`
+      bb
+      ob
+    `)
+
+    game.checkCells()
+
+    expect(game.toString()).to.equalShape(`
+      bb
+      bb
+    `)
+  })
 })
