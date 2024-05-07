@@ -89,4 +89,20 @@ describe('Board can accept and read RLE without parsing x/y', () => {
       bbbbb
     `)
   })
+
+  test('6 by 6 padded glider', () => {
+    const input = '3bo$4bo$2b3o!'
+    const game = new GameOfLife(6, 6, input)
+
+    console.log(game.toString())
+
+    expect(game.toString()).to.equalShape(`
+      bbbobb
+      bbbbob
+      bbooob
+      bbbbbb
+      bbbbbb
+      bbbbbb
+    `)
+  })
 })

@@ -36,21 +36,28 @@ export class GameOfLife {
     let prevMultiplier: number | undefined = undefined
     const elements = row.split('')
     let parsedRow = ''
-    for (const index in elements) {
-      const element = elements[index]
+    let currentParsedElement = 0
+    for (const element of elements) {
       const maybeNumber = Number(element)
       if (Number.isNaN(maybeNumber)) {
-        parsedRow += elements[index].repeat(prevMultiplier || 1)
+        console.log('------------')
+        console.log('Current element ', element, 'Multiplier? ', prevMultiplier)
+        parsedRow += element.repeat(prevMultiplier || 1)
         prevMultiplier = undefined
+
+        console.log(parsedRow, '< - - - - -- \n')
 
         parsedRow += this.appendDeadCellsToTheEndOfTheRow(
           elements.length,
-          Number(index),
+          currentParsedElement,
+          parsedRow.length - 1,
           element
         )
+        console.log('------------')
       } else {
         prevMultiplier = maybeNumber
       }
+      currentParsedElement++
     }
 
     return parsedRow.replace('!', '').split('')
@@ -58,11 +65,24 @@ export class GameOfLife {
 
   appendDeadCellsToTheEndOfTheRow = (
     encodedLength: number,
+    currentParsedElement: number,
     currentIndex: number,
     currentElement: string
   ) => {
-    if (encodedLength - 1 === currentIndex && currentIndex < this.width - 1) {
+    if (
+      encodedLength - 1 === currentParsedElement &&
+      currentIndex <= this.width - 1
+    ) {
       let difference = this.width - 1 - currentIndex
+      console.log(
+        'Appending currently to the end: ',
+        difference,
+        ' Current index? ',
+        currentIndex,
+        'Andf current element ? ',
+        currentElement
+      )
+      console.log(encodedLength, ' ? ? ?')
 
       if (currentElement === '!') {
         difference += 1
