@@ -94,8 +94,6 @@ describe('Board can accept and read RLE without parsing x/y', () => {
     const input = '3bo$4bo$2b3o!'
     const game = new GameOfLife(6, 6, input)
 
-    console.log(game.toString())
-
     expect(game.toString()).to.equalShape(`
       bbbobb
       bbbbob

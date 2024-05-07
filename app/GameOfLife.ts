@@ -87,6 +87,8 @@ export class GameOfLife {
     encoding && this.parseEncoding(encoding)
   }
 
+  checkCells = () => {}
+
   toString() {
     const stringRows = this.board.map((row) => row.join(''))
     return stringRows.join('\n').concat('\n')
