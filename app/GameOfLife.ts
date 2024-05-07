@@ -36,7 +36,7 @@ export class GameOfLife {
     let prevMultiplier: number | undefined = undefined
     const elements = row.split('')
     let parsedRow = ''
-    let currentParsedElement = 0
+    let currentRLEStringIndex = 0
     for (const element of elements) {
       const maybeNumber = Number(element)
       if (Number.isNaN(maybeNumber)) {
@@ -45,14 +45,14 @@ export class GameOfLife {
 
         parsedRow += this.appendDeadCellsToTheEndOfTheRow(
           elements.length,
-          currentParsedElement,
+          currentRLEStringIndex,
           parsedRow.length - 1,
           element
         )
       } else {
         prevMultiplier = maybeNumber
       }
-      currentParsedElement++
+      currentRLEStringIndex++
     }
 
     return parsedRow.replace('!', '').split('')
@@ -60,15 +60,15 @@ export class GameOfLife {
 
   appendDeadCellsToTheEndOfTheRow = (
     encodedLength: number,
-    currentParsedElement: number,
-    currentIndex: number,
+    currentRLEStringIndex: number,
+    currentParsedElementIndex: number,
     currentElement: string
   ) => {
     if (
-      encodedLength - 1 === currentParsedElement &&
-      currentIndex <= this.width - 1
+      encodedLength - 1 === currentRLEStringIndex &&
+      currentParsedElementIndex <= this.width - 1
     ) {
-      let difference = this.width - 1 - currentIndex
+      let difference = this.width - 1 - currentParsedElementIndex
 
       if (currentElement === '!') {
         difference += 1
