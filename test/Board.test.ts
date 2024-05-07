@@ -76,4 +76,17 @@ describe('Board can accept and read RLE without parsing x/y', () => {
       obb
     `)
   })
+
+  test('5 by 5 encoding still append dead cells to the end', () => {
+    const input = 'bo$2bo$o!'
+    const game = new GameOfLife(5, 5, input)
+
+    expect(game.toString()).to.equalShape(`
+      bobbb
+      bbobb
+      obbbb
+      bbbbb
+      bbbbb
+    `)
+  })
 })

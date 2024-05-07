@@ -13,15 +13,18 @@ export class GameOfLife {
     }
   }
 
-  parseEncoding(encoding: string) {
+  parseEncoding = (encoding: string) => {
     const _rows = encoding.split('$')
-    const rows = _rows.map(this.parseEncodedRow)
+    let rows = _rows.map(this.parseEncodedRow)
+    if (rows.length < this.height) {
+      const difference = this.height - rows.length
+      const additionalRows = Array.from({ length: difference }).map((_) =>
+        'b'.repeat(this.width).split('')
+      )
+      rows = [...rows, ...additionalRows]
+    }
     this.board = rows
   }
-
-  /**
-   * OBS HAS BEEN FREEZING THE SCREEN OF THE RECORDING FOR 42 MINUTES :+1:
-   */
 
   parseEncodedRow = (row: string) => {
     let prevMultiplier: number | undefined = undefined
