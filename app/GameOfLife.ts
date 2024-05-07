@@ -87,7 +87,13 @@ export class GameOfLife {
     encoding && this.parseEncoding(encoding)
   }
 
-  checkCells = () => {}
+  checkCells = () => {
+    for (let i = 0; i < this.height; i++) {
+      for (let j = 0; j < this.width; j++) {
+        const currentCell = this.board[i][j]
+      }
+    }
+  }
 
   toString() {
     const stringRows = this.board.map((row) => row.join(''))

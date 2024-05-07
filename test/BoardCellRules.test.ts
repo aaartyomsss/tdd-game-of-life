@@ -1,3 +1,4 @@
+import { expect } from 'chai'
 import { describe, test, expect as vex } from 'vitest'
 import { GameOfLife } from '../app/GameOfLife'
 
@@ -12,5 +13,14 @@ describe('Main game logic', () => {
   test('A class contains method that loops over the board and checks the logic', () => {
     const game = new GameOfLife(3, 3)
     vex(game.checkCells).toBeDefined()
+  })
+
+  test('Board remains the same in case all of the cells are dead', () => {
+    const game = new GameOfLife(2, 2)
+    game.checkCells()
+    expect(game.toString()).to.equalShape(`
+      bb
+      bb
+    `)
   })
 })
