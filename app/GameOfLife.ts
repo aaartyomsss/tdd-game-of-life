@@ -15,15 +15,21 @@ export class GameOfLife {
 
   parseEncoding = (encoding: string) => {
     const _rows = encoding.split('$')
-    let rows = _rows.map(this.parseEncodedRow)
+    const parsedEncodingRows = _rows.map(this.parseEncodedRow)
+    const rowsWithAppendedDeadCellsAtTheEnd =
+      this.appendFillerRows(parsedEncodingRows)
+    this.board = rowsWithAppendedDeadCellsAtTheEnd
+  }
+
+  appendFillerRows = (rows: string[][]) => {
     if (rows.length < this.height) {
       const difference = this.height - rows.length
       const additionalRows = Array.from({ length: difference }).map((_) =>
         'b'.repeat(this.width).split('')
       )
-      rows = [...rows, ...additionalRows]
+      return [...rows, ...additionalRows]
     }
-    this.board = rows
+    return rows
   }
 
   parseEncodedRow = (row: string) => {
