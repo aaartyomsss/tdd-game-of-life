@@ -1,3 +1,5 @@
+import fs from 'fs'
+
 export class GameOfLife {
   width: number
   height: number
@@ -138,6 +140,15 @@ export class GameOfLife {
       }
     }
     return aliveCount
+  }
+
+  static readEncodingFile = (path: string) => {
+    const file = fs.readFileSync(path, { encoding: 'utf-8' })
+    return file
+  }
+
+  static parseFile = (fileContent: string) => {
+    return { x: 3, y: 3 }
   }
 
   toString() {
