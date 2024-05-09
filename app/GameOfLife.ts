@@ -100,11 +100,19 @@ export class GameOfLife {
         if (currentCell === 'o' && numberOfAliveNeightbors < 2) {
           cellsToKill.push({ i, j })
         }
+
+        if (currentCell === 'b' && numberOfAliveNeightbors === 3) {
+          cellsToBringToLife.push({ i, j })
+        }
       }
     }
 
     cellsToKill.forEach((c) => {
       this.board[c.i][c.j] = 'b'
+    })
+
+    cellsToBringToLife.forEach((c) => {
+      this.board[c.i][c.j] = 'o'
     })
   }
 

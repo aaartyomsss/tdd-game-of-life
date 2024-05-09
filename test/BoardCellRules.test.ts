@@ -73,6 +73,22 @@ describe('Main game logic', () => {
       bbb
     `)
   })
+
+  test('New cell is born if it has 3 neighbors', () => {
+    const input = 'oo$bo!'
+    const game = new GameOfLife(2, 2, input)
+    expect(game.toString()).to.equalShape(`
+      oo
+      bo
+    `)
+
+    game.checkCells()
+
+    expect(game.toString()).to.equalShape(`
+      oo
+      oo
+    `)
+  })
 })
 
 describe('Counting logic for alive cell', () => {
