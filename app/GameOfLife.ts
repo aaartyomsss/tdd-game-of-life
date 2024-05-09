@@ -148,7 +148,23 @@ export class GameOfLife {
   }
 
   static parseFile = (fileContent: string) => {
-    return { x: 3, y: 3 }
+    const rowsOfFile = fileContent.split('\n')
+    let data: { x?: number; y?: number } = {}
+    rowsOfFile.forEach((r) => {
+      if (r.startsWith('x =')) {
+        const rowData = r.split(', ')
+        const unparsedX = rowData[0]
+        const unparsedY = rowData[1]
+        const [x, valueX] = unparsedX.split(' = ')
+        const [y, valueY] = unparsedY.split(' = ')
+        const intX = Number(valueX)
+        const intY = Number(valueY)
+        data.x = intX
+        data.y = intY
+      }
+    })
+
+    return data
   }
 
   toString() {
