@@ -153,7 +153,7 @@ export class GameOfLife {
     rowsOfFile.forEach((r) => {
       if (r.startsWith('x =')) {
         const widthAndLegth = this.parseWidthAndLengthFromFileRow(r)
-        data = widthAndLegth
+        data = { ...data, ...widthAndLegth }
       }
     })
 
