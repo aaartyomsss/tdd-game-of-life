@@ -104,6 +104,10 @@ export class GameOfLife {
         if (currentCell === 'b' && numberOfAliveNeightbors === 3) {
           cellsToBringToLife.push({ i, j })
         }
+
+        if (currentCell === 'o' && numberOfAliveNeightbors > 3) {
+          cellsToKill.push({ i, j })
+        }
       }
     }
 

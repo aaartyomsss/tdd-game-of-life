@@ -115,6 +115,24 @@ describe('Main game logic', () => {
       bbb
     `)
   })
+
+  test('Alive cell is dead due to overpopulation, i.e more that 3 neighbors', () => {
+    const input = '2ob$2ob$bob!'
+    const game = new GameOfLife(3, 3, input)
+    expect(game.toString()).to.equalShape(`
+      oob
+      oob
+      bob
+    `)
+
+    game.checkCells()
+
+    expect(game.toString()).to.equalShape(`
+      oob
+      bbo
+      oob
+    `)
+  })
 })
 
 describe('Counting logic for alive cell', () => {
