@@ -89,7 +89,6 @@ export class GameOfLife {
 
   checkCells = () => {
     const cellsToKill: CellLocation[] = []
-    const cellsToKeepAlive: CellLocation[] = []
     const cellsToBringToLife: CellLocation[] = []
 
     for (let i = 0; i < this.height; i++) {
