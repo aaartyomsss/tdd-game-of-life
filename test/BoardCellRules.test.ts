@@ -56,7 +56,7 @@ describe('Main game logic', () => {
     `)
   })
 
-  test.skip('Cell remains alive if their neighbor count is 2', () => {
+  test('Cell remains alive if their neighbor count is 2', () => {
     const input = '2bo$bob$o!'
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
@@ -72,5 +72,63 @@ describe('Main game logic', () => {
       bob
       bbb
     `)
+  })
+})
+
+describe('Counting logic for alive cell', () => {
+  test('Alive count for alive cell in center should be 0', () => {
+    const input = '3b$bo$b!'
+    const game = new GameOfLife(3, 3, input)
+    expect(game.toString()).to.equalShape(`
+      bbb
+      bob
+      bbb
+    `)
+
+    const count = game.checkCellAliveNeighbors({ i: 1, j: 1 })
+
+    expect(count).to.equal(0)
+  })
+
+  test('Alive count for alive cell in center should be 1', () => {
+    const input = '2bo$bo$b!'
+    const game = new GameOfLife(3, 3, input)
+    expect(game.toString()).to.equalShape(`
+      bbo
+      bob
+      bbb
+    `)
+
+    const count = game.checkCellAliveNeighbors({ i: 1, j: 1 })
+
+    expect(count).to.equal(1)
+  })
+
+  test('Alive count for alive cell in courner should be 1', () => {
+    const input = '2bo$bo$b!'
+    const game = new GameOfLife(3, 3, input)
+    expect(game.toString()).to.equalShape(`
+      bbo
+      bob
+      bbb
+    `)
+
+    const count = game.checkCellAliveNeighbors({ i: 0, j: 2 })
+
+    expect(count).to.equal(1)
+  })
+
+  test('Alive count for alive cell in courner should be 3', () => {
+    const input = '3o$3o$3o!'
+    const game = new GameOfLife(3, 3, input)
+    expect(game.toString()).to.equalShape(`
+      ooo
+      ooo
+      ooo
+    `)
+
+    const count = game.checkCellAliveNeighbors({ i: 0, j: 2 })
+
+    expect(count).to.equal(3)
   })
 })

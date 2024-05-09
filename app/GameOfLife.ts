@@ -111,13 +111,20 @@ export class GameOfLife {
   checkCellAliveNeighbors = (cell: CellLocation) => {
     const { i, j } = cell
     let aliveCount = 0
-    // Actually doesn't matter now
-    if (
-      this.board[i - 1] &&
-      this.board[i - 1][j] &&
-      this.board[i - 1][j] === 'o'
-    ) {
-      aliveCount++
+
+    for (let ik = -1; ik <= 1; ik++) {
+      for (let jk = -1; jk <= 1; jk++) {
+        if (ik === 0 && jk === 0) {
+          continue
+        }
+        if (
+          this.board[i + ik] &&
+          this.board[i + ik][j + jk] &&
+          this.board[i + ik][j + jk] === 'o'
+        ) {
+          aliveCount++
+        }
+      }
     }
     return aliveCount
   }
