@@ -152,19 +152,23 @@ export class GameOfLife {
     let data: { x?: number; y?: number } = {}
     rowsOfFile.forEach((r) => {
       if (r.startsWith('x =')) {
-        const rowData = r.split(', ')
-        const unparsedX = rowData[0]
-        const unparsedY = rowData[1]
-        const [x, valueX] = unparsedX.split(' = ')
-        const [y, valueY] = unparsedY.split(' = ')
-        const intX = Number(valueX)
-        const intY = Number(valueY)
-        data.x = intX
-        data.y = intY
+        const widthAndLegth = this.parseWidthAndLengthFromFileRow(r)
+        data = widthAndLegth
       }
     })
 
     return data
+  }
+
+  static parseWidthAndLengthFromFileRow = (row: string) => {
+    const rowData = row.split(', ')
+    const unparsedX = rowData[0]
+    const unparsedY = rowData[1]
+    const [x, valueX] = unparsedX.split(' = ')
+    const [y, valueY] = unparsedY.split(' = ')
+    const intX = Number(valueX)
+    const intY = Number(valueY)
+    return { x: intX, y: intY }
   }
 
   toString() {
