@@ -89,6 +89,32 @@ describe('Main game logic', () => {
       oo
     `)
   })
+
+  test('Test simple oscillator', () => {
+    const input = '3b$3o$3b!'
+    const game = new GameOfLife(3, 3, input)
+    expect(game.toString()).to.equalShape(`
+      bbb
+      ooo
+      bbb
+    `)
+
+    game.checkCells()
+
+    expect(game.toString()).to.equalShape(`
+      bob
+      bob
+      bob
+    `)
+
+    game.checkCells()
+
+    expect(game.toString()).to.equalShape(`
+      bbb
+      ooo
+      bbb
+    `)
+  })
 })
 
 describe('Counting logic for alive cell', () => {
