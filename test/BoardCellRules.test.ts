@@ -39,4 +39,38 @@ describe('Main game logic', () => {
       bb
     `)
   })
+
+  test('Cells die if their neighbor count is 1', () => {
+    const input = 'bo$ob!'
+    const game = new GameOfLife(2, 2, input)
+    expect(game.toString()).to.equalShape(`
+      bo
+      ob
+    `)
+
+    game.checkCells()
+
+    expect(game.toString()).to.equalShape(`
+      bb
+      bb
+    `)
+  })
+
+  test.skip('Cell remains alive if their neighbor count is 2', () => {
+    const input = '2bo$bob$o!'
+    const game = new GameOfLife(3, 3, input)
+    expect(game.toString()).to.equalShape(`
+      bbo
+      bob
+      obb
+    `)
+
+    game.checkCells()
+
+    expect(game.toString()).to.equalShape(`
+      bbb
+      bob
+      bbb
+    `)
+  })
 })
