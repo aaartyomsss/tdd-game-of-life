@@ -13,4 +13,20 @@ describe('In cli a file should be selected and parsed', () => {
     vex(data.x).toEqual(3)
     vex(data.y).toEqual(3)
   })
+
+  test('parser can receive sinlge line RLE encoded string', () => {
+    const file = GameOfLife.readEncodingFile('./rle/1a_simple_glider.rle')
+    const data = GameOfLife.parseFile(file)
+    vex(data.encoding).toEqual('bo$2bo$3o!')
+  })
+
+  test('Parse can receive and parse a multiline encoding', () => {
+    const file = GameOfLife.readEncodingFile('./rle/zebrastripes.rle')
+    const data = GameOfLife.parseFile(file)
+    vex(data.x).toEqual(27)
+    vex(data.y).toEqual(21)
+    vex(data.encoding).toEqual(
+      '2b2o$2bo$4bo2bo2bo2bo2bo2bo2bo$3b20o$2bo$3b18o$21bo$b20o$o$b22o$23bob2o$b20o2bob2o$o20bobo$b20o2bo$23b2o$3b18o$2bo18bo$3b18o2$5b2o2b2obob4ob2o$5b2o2bob2obo2bob2o!'
+    )
+  })
 })

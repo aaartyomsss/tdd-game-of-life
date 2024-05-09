@@ -149,15 +149,21 @@ export class GameOfLife {
 
   static parseFile = (fileContent: string) => {
     const rowsOfFile = fileContent.split('\n')
-    let data: { x?: number; y?: number } = {}
+    let dementionsParsed = false
+    let data: { x?: number; y?: number; encoding?: string } = {}
+    let encodingString: string = ''
     rowsOfFile.forEach((r) => {
+      if (dementionsParsed) {
+        encodingString += r.replaceAll('\r', '')
+      }
+
       if (r.startsWith('x =')) {
         const widthAndLegth = this.parseWidthAndLengthFromFileRow(r)
         data = { ...data, ...widthAndLegth }
+        dementionsParsed = true
       }
     })
-
-    return data
+    return { ...data, encoding: encodingString }
   }
 
   static parseWidthAndLengthFromFileRow = (row: string) => {
