@@ -95,15 +95,7 @@ export class GameOfLife {
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
         const currentCell = this.board[i][j]
-        let numberOfAliveNeightbors = 0
-        // Actually doesn't matter now
-        if (
-          this.board[i - 1] &&
-          this.board[i - 1][j] &&
-          this.board[i - 1][j] === 'o'
-        ) {
-          numberOfAliveNeightbors++
-        }
+        let numberOfAliveNeightbors = this.checkCellAliveNeighbors({ i, j })
 
         if (currentCell === 'o' && numberOfAliveNeightbors < 2) {
           cellsToKill.push({ i, j })
@@ -114,6 +106,20 @@ export class GameOfLife {
     cellsToKill.forEach((c) => {
       this.board[c.i][c.j] = 'b'
     })
+  }
+
+  checkCellAliveNeighbors = (cell: CellLocation) => {
+    const { i, j } = cell
+    let aliveCount = 0
+    // Actually doesn't matter now
+    if (
+      this.board[i - 1] &&
+      this.board[i - 1][j] &&
+      this.board[i - 1][j] === 'o'
+    ) {
+      aliveCount++
+    }
+    return aliveCount
   }
 
   toString() {
