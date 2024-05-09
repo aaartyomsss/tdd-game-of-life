@@ -150,7 +150,7 @@ export class GameOfLife {
   static parseFile = (fileContent: string) => {
     const rowsOfFile = fileContent.split('\n')
     let dementionsParsed = false
-    let data: { x?: number; y?: number; encoding?: string } = {}
+    let data: ParseFileData = {}
     let encodingString: string = ''
     rowsOfFile.forEach((r) => {
       if (dementionsParsed) {
@@ -182,6 +182,8 @@ export class GameOfLife {
     return stringRows.join('\n').concat('\n')
   }
 }
+
+type ParseFileData = { x?: number; y?: number; encoding?: string }
 
 type CellLocation = {
   i: number
