@@ -144,6 +144,7 @@ export class GameOfLife {
 
   static readEncodingFile = (path: string) => {
     const file = fs.readFileSync(path, { encoding: 'utf-8' })
+    console.log('How is so ? ', file)
     return file
   }
 
