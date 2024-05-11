@@ -1,3 +1,4 @@
+import { expect } from 'chai'
 import fs from 'fs'
 import { writeFile } from 'fs/promises'
 import { afterAll, beforeAll, describe, test, expect as vex, vi } from 'vitest'
@@ -38,5 +39,16 @@ describe('Tests function which sets up the game ', () => {
 
     initializeGame(smallGliderPath)
     vex(spy).toHaveBeenCalledWith(gliderString)
+  })
+
+  test('Returns game instance', () => {
+    const game = initializeGame(smallGliderPath)
+    vex(game.width).toEqual(3)
+    vex(game.height).toEqual(3)
+    expect(game.toString()).to.equalShape(`
+      bob
+      bbo
+      ooo
+    `)
   })
 })
