@@ -4,7 +4,7 @@ import { afterAll, beforeAll, describe, test, expect as vex, vi } from 'vitest'
 import { GameOfLife } from '../app/GameOfLife'
 import { initializeGame } from '../app/initializeGame'
 
-const dir = './tests/tmp'
+const dir = './testable/tmp'
 const smallGliderPath = dir + '/glider.rle'
 
 beforeAll(async () => {
@@ -14,7 +14,7 @@ beforeAll(async () => {
 })
 
 afterAll(() => {
-  fs.rmSync('./tests', { recursive: true })
+  fs.rmSync('./testable', { recursive: true })
 })
 
 describe('Tests function which sets up the game ', () => {
