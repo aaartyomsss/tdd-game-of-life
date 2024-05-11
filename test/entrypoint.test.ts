@@ -6,9 +6,9 @@ import { initializeGame } from '../app/initializeGame'
 
 const dir = './testable/tmp'
 const smallGliderPath = dir + '/glider.rle'
+const gliderString = '#C This is a glider.\nx = 3, y = 3\nbo$2bo$3o!'
 
 beforeAll(async () => {
-  const gliderString = '#C This is a glider.\nx = 3, y = 3\nbo$2bo$3o!'
   fs.mkdirSync(dir, { recursive: true })
   await writeFile(smallGliderPath, gliderString)
 })
@@ -31,5 +31,12 @@ describe('Tests function which sets up the game ', () => {
 
     initializeGame(smallGliderPath)
     vex(spy).toHaveBeenCalledWith(smallGliderPath)
+  })
+
+  test('Parses file to get default state ', () => {
+    const spy = vi.spyOn(GameOfLife, 'parseFile')
+
+    initializeGame(smallGliderPath)
+    vex(spy).toHaveBeenCalledWith(gliderString)
   })
 })
