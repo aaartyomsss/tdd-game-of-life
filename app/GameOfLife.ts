@@ -39,9 +39,10 @@ export class GameOfLife {
     const elements = row.split('')
     let parsedRow = ''
     let currentRLEStringIndex = 0
-    for (const element of elements) {
-      const maybeNumber = Number(element)
+    for (const _element of elements) {
+      const maybeNumber = Number(_element)
       if (Number.isNaN(maybeNumber)) {
+        const element = _element === 'o' ? 'O' : _element
         parsedRow += element.repeat(prevMultiplier || 1)
         prevMultiplier = undefined
 
@@ -98,7 +99,7 @@ export class GameOfLife {
         const currentCell = this.board[i][j]
         let numberOfAliveNeightbors = this.checkCellAliveNeighbors({ i, j })
 
-        if (currentCell === 'o' && numberOfAliveNeightbors < 2) {
+        if (currentCell === 'O' && numberOfAliveNeightbors < 2) {
           cellsToKill.push({ i, j })
         }
 
@@ -106,7 +107,7 @@ export class GameOfLife {
           cellsToBringToLife.push({ i, j })
         }
 
-        if (currentCell === 'o' && numberOfAliveNeightbors > 3) {
+        if (currentCell === 'O' && numberOfAliveNeightbors > 3) {
           cellsToKill.push({ i, j })
         }
       }
@@ -117,7 +118,7 @@ export class GameOfLife {
     })
 
     cellsToBringToLife.forEach((c) => {
-      this.board[c.i][c.j] = 'o'
+      this.board[c.i][c.j] = 'O'
     })
   }
 
@@ -133,7 +134,7 @@ export class GameOfLife {
         if (
           this.board[i + ik] &&
           this.board[i + ik][j + jk] &&
-          this.board[i + ik][j + jk] === 'o'
+          this.board[i + ik][j + jk] === 'O'
         ) {
           aliveCount++
         }

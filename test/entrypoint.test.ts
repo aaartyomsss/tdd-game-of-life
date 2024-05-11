@@ -58,9 +58,9 @@ describe('Tests function which sets up the game ', () => {
     vex(game.width).toEqual(3)
     vex(game.height).toEqual(3)
     expect(game.toString()).to.equalShape(`
-      bob
-      bbo
-      ooo
+      bOb
+      bbO
+      OOO
     `)
   })
 

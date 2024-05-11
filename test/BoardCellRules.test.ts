@@ -29,7 +29,7 @@ describe('Main game logic', () => {
     const game = new GameOfLife(2, 2, input)
     expect(game.toString()).to.equalShape(`
       bb
-      ob
+      Ob
     `)
 
     game.checkCells()
@@ -44,8 +44,8 @@ describe('Main game logic', () => {
     const input = 'bo$ob!'
     const game = new GameOfLife(2, 2, input)
     expect(game.toString()).to.equalShape(`
-      bo
-      ob
+      bO
+      Ob
     `)
 
     game.checkCells()
@@ -60,16 +60,16 @@ describe('Main game logic', () => {
     const input = '2bo$bob$o!'
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
-      bbo
-      bob
-      obb
+      bbO
+      bOb
+      Obb
     `)
 
     game.checkCells()
 
     expect(game.toString()).to.equalShape(`
       bbb
-      bob
+      bOb
       bbb
     `)
   })
@@ -78,15 +78,15 @@ describe('Main game logic', () => {
     const input = 'oo$bo!'
     const game = new GameOfLife(2, 2, input)
     expect(game.toString()).to.equalShape(`
-      oo
-      bo
+      OO
+      bO
     `)
 
     game.checkCells()
 
     expect(game.toString()).to.equalShape(`
-      oo
-      oo
+      OO
+      OO
     `)
   })
 
@@ -95,23 +95,23 @@ describe('Main game logic', () => {
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
       bbb
-      ooo
+      OOO
       bbb
     `)
 
     game.checkCells()
 
     expect(game.toString()).to.equalShape(`
-      bob
-      bob
-      bob
+      bOb
+      bOb
+      bOb
     `)
 
     game.checkCells()
 
     expect(game.toString()).to.equalShape(`
       bbb
-      ooo
+      OOO
       bbb
     `)
   })
@@ -120,17 +120,17 @@ describe('Main game logic', () => {
     const input = '2ob$2ob$bob!'
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
-      oob
-      oob
-      bob
+      OOb
+      OOb
+      bOb
     `)
 
     game.checkCells()
 
     expect(game.toString()).to.equalShape(`
-      oob
-      bbo
-      oob
+      OOb
+      bbO
+      OOb
     `)
   })
 })
@@ -141,7 +141,7 @@ describe('Counting logic for alive cell', () => {
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
       bbb
-      bob
+      bOb
       bbb
     `)
 
@@ -154,8 +154,8 @@ describe('Counting logic for alive cell', () => {
     const input = '2bo$bo$b!'
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
-      bbo
-      bob
+      bbO
+      bOb
       bbb
     `)
 
@@ -168,8 +168,8 @@ describe('Counting logic for alive cell', () => {
     const input = '2bo$bo$b!'
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
-      bbo
-      bob
+      bbO
+      bOb
       bbb
     `)
 
@@ -182,9 +182,9 @@ describe('Counting logic for alive cell', () => {
     const input = '3o$3o$3o!'
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
-      ooo
-      ooo
-      ooo
+      OOO
+      OOO
+      OOO
     `)
 
     const count = game.checkCellAliveNeighbors({ i: 0, j: 2 })

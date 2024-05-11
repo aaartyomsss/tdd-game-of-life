@@ -43,7 +43,7 @@ describe('Board can accept and read RLE without parsing x/y', () => {
     const input = 'o!'
     const game = new GameOfLife(1, 1, input)
     expect(game.toString()).to.equalShape(`
-      o
+      O
     `)
   })
 
@@ -51,9 +51,9 @@ describe('Board can accept and read RLE without parsing x/y', () => {
     const input = 'bob$bbo$ooo!'
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
-      bob
-      bbo
-      ooo
+      bOb
+      bbO
+      OOO
     `)
   })
 
@@ -61,9 +61,9 @@ describe('Board can accept and read RLE without parsing x/y', () => {
     const input = 'bob$2bo$3o!'
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
-      bob
-      bbo
-      ooo
+      bOb
+      bbO
+      OOO
     `)
   })
 
@@ -71,9 +71,9 @@ describe('Board can accept and read RLE without parsing x/y', () => {
     const input = 'bo$2bo$o!'
     const game = new GameOfLife(3, 3, input)
     expect(game.toString()).to.equalShape(`
-      bob
-      bbo
-      obb
+      bOb
+      bbO
+      Obb
     `)
   })
 
@@ -82,9 +82,9 @@ describe('Board can accept and read RLE without parsing x/y', () => {
     const game = new GameOfLife(5, 5, input)
 
     expect(game.toString()).to.equalShape(`
-      bobbb
-      bbobb
-      obbbb
+      bObbb
+      bbObb
+      Obbbb
       bbbbb
       bbbbb
     `)
@@ -95,9 +95,9 @@ describe('Board can accept and read RLE without parsing x/y', () => {
     const game = new GameOfLife(6, 6, input)
 
     expect(game.toString()).to.equalShape(`
-      bbbobb
-      bbbbob
-      bbooob
+      bbbObb
+      bbbbOb
+      bbOOOb
       bbbbbb
       bbbbbb
       bbbbbb
