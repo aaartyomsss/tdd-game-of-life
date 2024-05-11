@@ -28,7 +28,6 @@ describe('In cli a file should be selected and parsed', () => {
 
   test('Parser can receive x and y values', () => {
     const file = GameOfLife.readEncodingFile(smallGliderPath)
-    console.log(file, ' < < < < < ? ', typeof file)
     const data = GameOfLife.parseFile(file)
     vex(data.x).toEqual(3)
     vex(data.y).toEqual(3)
